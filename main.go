@@ -12,10 +12,12 @@ var (
 func main() {
 	// Inicializando as configurações do Gin atraves do subpackage router criado anteriormente
 	logger = config.GetLogger("main")
-	router.Initialize()
+
 	err := config.Init()
 	if err != nil {
 		logger.ErrF("CONFIG INITIALIZATION ERROR: %v", err)
 		return
 	}
+
+	router.Initialize()
 }

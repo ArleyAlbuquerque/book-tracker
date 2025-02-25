@@ -6,8 +6,8 @@ import (
 
 type Creating struct {
 	gorm.Model
-	Id    int64  `json:"id"`
-	Name  string `json:"name"`
-	Autor string `json:"string"`
-	Pages int    `json:"pages"`
+	Id    int64
+	Name  string
+	Autor string
+	Pages int64
 }
