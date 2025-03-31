@@ -30,3 +30,18 @@ func (r *CreatingBookRequest) Validate() error {
 
 	return nil
 }
+
+type UpdateBookRequest struct {
+	Name  string `json:"name"`
+	Autor string `json:"autor"`
+	Pages int64  `json:"pages"`
+}
+
+func (r *UpdateBookRequest) Validate() error {
+	//if anyfield has been provided, validation is truthy
+	if r.Autor != "" || r.Name != "" || r.Pages > 0 {
+		return nil
+	}
+	//if none of fields has been provided, return falsy
+	return fmt.Errorf("at least one valid field must be provided")
+}
