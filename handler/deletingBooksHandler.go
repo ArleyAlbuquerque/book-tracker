@@ -8,6 +8,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete Books
+// @Description Delete a book
+// @Tags Creating
+// @Accept json
+// @Produce json
+// @Param id query string true "Book Identification"
+// @Success 200 {object} DeleteBookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /book [delete]
 func DeletingBooksHandler(c *gin.Context) {
 	id := c.Query("id")
 	if id == " " {
@@ -26,5 +38,5 @@ func DeletingBooksHandler(c *gin.Context) {
 		sendError(c, http.StatusInternalServerError, fmt.Sprintf("error deleting book with id: %s", id))
 		return
 	}
-	sendSucess(c, "book-deleted", creating)
+	sendSuccess(c, "book-deleted", creating)
 }

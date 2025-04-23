@@ -4,9 +4,10 @@
 APP_NAME=book-tracker
 
 #Tasks
-default: run
+default:run-with-docs
 
-run: 
+run-with-docs:
+	@swag init
 	@go run main.go
 build:
 	@go build -o $(APP_NAME) main.go

@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary List Books
+// @Description List all books
+// @Tags Creating
+// @Accept json
+// @Produce json
+// @Success 200 {object} ListBookResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /books [get]
 func ListBooksHandler(c *gin.Context) {
 	books := []schemas.Creating{}
 
@@ -14,6 +24,6 @@ func ListBooksHandler(c *gin.Context) {
 		sendError(c, http.StatusInternalServerError, "error listing openings")
 		return
 	}
-	sendSucess(c, "list-books", books)
+	sendSuccess(c, "list-books", books)
 
 }

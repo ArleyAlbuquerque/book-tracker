@@ -1,4 +1,225 @@
+definitions:
+  handler.CreateBookResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CreatingResponses'
+      message:
+        type: string
+    type: object
+  handler.CreatingBookRequest:
+    properties:
+      autor:
+        type: string
+      name:
+        type: string
+      pages:
+        type: integer
+    type: object
+  handler.DeleteBookResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CreatingResponses'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  handler.ListBookResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.CreatingResponses'
+        type: array
+      message:
+        type: string
+    type: object
+  handler.ShowBookResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CreatingResponses'
+      message:
+        type: string
+    type: object
+  handler.UpdateBookRequest:
+    properties:
+      autor:
+        type: string
+      name:
+        type: string
+      pages:
+        type: integer
+    type: object
+  handler.UpdateBookResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CreatingResponses'
+      message:
+        type: string
+    type: object
+  schemas.CreatingResponses:
+    properties:
+      autor:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      name:
+        type: string
+      pages:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /book:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a book
+      parameters:
+      - description: Book Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteBookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete Books
+      tags:
+      - Creating
+    get:
+      consumes:
+      - application/json
+      description: show all books
+      parameters:
+      - description: Book Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowBookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show Books
+      tags:
+      - Creating
+    post:
+      consumes:
+      - application/json
+      description: Create a new book
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreatingBookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateBookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create Books
+      tags:
+      - Creating
+    put:
+      consumes:
+      - application/json
+      description: show all books
+      parameters:
+      - description: Book Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Book update
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateBookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateBookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show Books
+      tags:
+      - Creating
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: List all books
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListBookResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List Books
+      tags:
+      - Creating
 swagger: "2.0"

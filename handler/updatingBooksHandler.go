@@ -7,6 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show Books
+// @Description show all books
+// @Tags Creating
+// @Accept json
+// @Produce json
+// @Param  id query string true "Book Identification"
+// @Param book body UpdateBookRequest true "Book update"
+// @Success 200 {object} UpdateBookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /book [put]
 func UpdatingBooksHandler(c *gin.Context) {
 	request := UpdateBookRequest{}
 
@@ -47,6 +61,6 @@ func UpdatingBooksHandler(c *gin.Context) {
 		return
 	}
 
-	sendSucess(c, "uptade-book", creating)
+	sendSuccess(c, "uptade-book", creating)
 
 }

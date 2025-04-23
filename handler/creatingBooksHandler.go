@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create Books
+// @Description Create a new book
+// @Tags Creating
+// @Accept json
+// @Produce json
+// @Param request body CreatingBookRequest true "Request body"
+// @Success 200 {object} CreateBookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /book [post]
 func CreatingBooksHandler(c *gin.Context) {
 	request := CreatingBookRequest{}
 
@@ -30,5 +42,5 @@ func CreatingBooksHandler(c *gin.Context) {
 		return
 	}
 
-	sendSucess(c, "creating-book", creating)
+	sendSuccess(c, "creating-book", creating)
 }

@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show Books
+// @Description show all books
+// @Tags Creating
+// @Accept json
+// @Produce json
+// @Param  id query string true "Book Identification"
+// @Success 200 {object} ShowBookResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /book [get]
 func ShowingBooksHandler(c *gin.Context) {
 	id := c.Query("id")
 	if id == "" {
@@ -20,5 +32,5 @@ func ShowingBooksHandler(c *gin.Context) {
 		return
 	}
 
-	sendSucess(c, "show-book", creating)
+	sendSuccess(c, "show-book", creating)
 }
